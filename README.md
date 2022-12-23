@@ -34,10 +34,9 @@ Employee는 여러명의 Blender를 관리할 수 있다. 또한 A사에서는 �
 9. A사는 아랍 문화권에 대한 이해를 높이고자 사원들에게 반드시 1개이상의 Lecture를 들을 것을 규칙으로 두고 있다. Lecture는 Lecture ID(Unique Identifier), Name, TutorName, Time, Place의 데이터를 저장해야 하며, 각각의 Employee는 여러 개의 강의를 들을 수 있고 각각의 강의는 여러명이 들을 수 있다. 또한 그 누구의 Employee도 수강하지 않은 Lecture라도 데이터베이스에 존재할 수 있다. 강의를 들으면 Employee가 Lecture를 들은 날짜와 Lecture가 끝난 이후에 퀴즈를 실시하여 그 성적을 기록한다.
 <br></br>
 ### 4. Conceptual design (ERD) <br/>
-<img width="1049" alt="image" src="https://user-images.githubusercontent.com/96376539/209355789-538e551b-efa4-4fc2-9a28-e4cef2f6d060.png">
+<img width="1049" alt="image" src="https://user-images.githubusercontent.com/96376539/209355789-538e551b-efa4-4fc2-9a28-e4cef2f6d060.png"></img>
 <br/><br/>
-### 5. Logical design (Relational schema)
-<br/>
+### 5. Logical design (Relational schema) <br/>
 Department(Department_ID, DepartmentName, DepartmentPhoneNum, FAXNumber, Location)<br/>
 Employee(Employee_ID, EmployeeName, Si, Dong, Ho, PhoneNumber, Salary, Department_ID, Mentor_ID, StartDate, EndDate, Incentive)<br/>
 FOREIGN KEY (Department_ID) REFERENCES Department(Department_ID)<br/>
