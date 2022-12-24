@@ -175,8 +175,7 @@ WHERE blender.blender_id = blendingtea.blender_id
 GROUP BY royalty 
 ORDER BY AVG(blender.age);
 ```
-<br/><br/>
-
+<br/>
 8. 블렌더의 나이가 30이하와 성별에 따라 개발되는 차의 이름을 오름차순으로 나타낸다. 차를 개발하는 사람의 나이와 성별에 따라 어떤 종류의 티를 만드는지 파악할 수 있다. <br/>
 ```sql
 SELECT age,gender, tea_name 
@@ -185,15 +184,14 @@ WHERE blender.blender_id = blendingtea.blender_id and age<30
 GROUP BY age, gender, tea_name 
 ORDER BY tea_name; 
 ```
-<br/><br/>
+<br/>
 9. 고객이 구독할 요금제의 이름, 가격, 제공되는 차의 개수를 비싼 가격순으로 보여준다. <br/>
 ```sql
 SELECT plan_name, price, provided_amount 
 FROM rate_plan 
 ORDER BY price DESC;
 ```
-<br/><br/>
-
+<br/>
 10. A를 많이 받은 직원 순으로 정렬하여 우수 직원을 시상하기 위해 아래와 같이
 강의를 수강한 직원 중 성적 A를 받은 직원의 이름, 전화번호, A를 받은 횟수를 보여준다. <br/>
 ```sql
@@ -203,8 +201,7 @@ WHERE grade = 'A'
 group by emp_id,emp_name,phone_number
 order by grade_A DESC;
 ```
-<br/><br/>
-
+<br/>
 11. 해당 기업은 최근 구독한 고객들에게 이벤트를 준비중에 있기에 2022년 12월 이후로 구독한 구독자의 이름, 주소(시,동,호), 로그인 ID,구독일을 아래의 SQL문을 통해 파악한다.. 최근에 구독한 사람 순으로 정렬해서 구독 갱신한 사람을 구분한다. <br/>
 ```sql
 SELECT customer_name,si,dong,ho,login_id,subscribe_date
@@ -212,8 +209,7 @@ FROM customer NATURAL JOIN subscriber
 WHERE subscribe_date > '2022-11-30' 
 ORDER BY subscribe_date DESC;
 ```
-<br/><br/>
-
+<br/>
 12. 90년대 출생한 고객중 성별 기준으로 고객을 나누어 수를 센다. 서비스를 이용하는 고객이 
 청년층이 얼마나 이용하는지, 어떤 성별이 주로 이용하는지  파악하는데 사용한다. <br/>
 ```sql
@@ -222,8 +218,7 @@ FROM customer
 WHERE birthdate > '1989-12-31' AND birthdate < '2000-01-01' 
 GROUP BY gender;
 ```
-<br/><br/>
-
+<br/>
 13. 고객이나 직원, 블랜더가 이사할 때 아래와 같은 UPDATE 문으로 주소를 업데이트 할 수 있다. <br/>
 ```sql
 UPDATE customer 
