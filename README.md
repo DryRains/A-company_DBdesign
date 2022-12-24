@@ -209,8 +209,7 @@ order by grade_A DESC;
 ```
 <br/>
 
-11. 해당 기업은 최근 구독한 고객들에게 이벤트를 준비중에 있기에 2022년 12월 이후로 구독한 구독자의 이름, 주소(시,동,호), 로그인 ID,구독일을 아래의 SQL문을 통해 파악한다.. 최근에 구독한 사람 순으로 정렬해서 구독 갱신한 사람을 구분한다.
-<br/>
+11. 해당 기업은 최근 구독한 고객들에게 이벤트를 준비중에 있기에 2022년 12월 이후로 구독한 구독자의 이름, 주소(시,동,호), 로그인 ID,구독일을 아래의 SQL문을 통해 파악한다.. 최근에 구독한 사람 순으로 정렬해서 구독 갱신한 사람을 구분한다. <br/>
 ```sql
 SELECT customer_name,si,dong,ho,login_id,subscribe_date
 FROM customer NATURAL JOIN subscriber 
@@ -220,8 +219,7 @@ ORDER BY subscribe_date DESC;
 <br/>
 
 12. 90년대 출생한 고객중 성별 기준으로 고객을 나누어 수를 센다. 서비스를 이용하는 고객이 
-청년층이 얼마나 이용하는지, 어떤 성별이 주로 이용하는지  파악하는데 사용한다.
-<br/>
+청년층이 얼마나 이용하는지, 어떤 성별이 주로 이용하는지  파악하는데 사용한다. <br/>
 ```sql
 SELECT gender,count(customer_id) as gender_count 
 FROM customer 
