@@ -206,7 +206,7 @@ order by grade_A DESC;
 ```
 <br/><br/>
 
-11. 해당 기업은 최근 구독한 고객들에게 이벤트를 준비중에 있기에 2022년 12월 이후로 구독한 구독자의 이름, 주소(시,동,호), 로그인 ID,구독일을 아래의 SQL문을 통해 파악한다.. 최근에 구독한 사람 순으로 정렬해서 구독 갱신한 사람을 구분한다. <br/>
+11. 해당 기업은 최근 구독한 고객들에게 이벤트를 준비중에 있기에 2022년 12월 이후로 구독한 구독자의 이름, 주소(시,동,호), 로그인 ID, 구독일을 아래의 SQL문을 통해 파악한다.. 최근에 구독한 사람 순으로 정렬해서 구독 갱신한 사람을 구분한다. <br/>
 ```sql
 SELECT customer_name,si,dong,ho,login_id,subscribe_date
 FROM customer NATURAL JOIN subscriber 
