@@ -108,8 +108,7 @@ AND ordertable.order_id = 'O0012'
 SET stock = stock - quantity;
 ```
 설명 : O0012 주문에 대한 주문수량(quantity) 만큼 blending tea의 재고(stock)가 빠져야 하므로,
-조인을 통해 어떤 블렌딩 티(tea_id)가 어떤 주문(order_id)에 사용되었는지 정보를 파악해야 한다. 따라서 테이블들을 위와 같이 조인해주고, blendingtea_orderred의 주문된 quantity만큼 blendingtea의 재고인 stock을 빼주고 이를 갱신해주면 재고 갱신이 되는것이다. 해당 SQL문을 실행시키면 200개이던 T0014의 재고가 O0012의 주문수량인 88개만큼 빠져서 112개가 된 것을 확인할 수 있다.
-<br/>
+조인을 통해 어떤 블렌딩 티(tea_id)가 어떤 주문(order_id)에 사용되었는지 정보를 파악해야 한다. 따라서 테이블들을 위와 같이 조인해주고, blendingtea_orderred의 주문된 quantity만큼 blendingtea의 재고인 stock을 빼주고 이를 갱신해주면 재고 갱신이 되는것이다. 해당 SQL문을 실행시키면 200개이던 T0014의 재고가 O0012의 주문수량인 88개만큼 빠져서 112개가 된 것을 확인할 수 있다.<br/><br/>
 2.공급업체가 원재료를 공급할때 아래와 같은 SQL을 통해 재고 정보를 업데이트한다.
 공급자 S0012가 원재료 M0005를 공급한다고 가정하면, 아래와 같은 SQL이 동작한다.<br/>
 ```sql
@@ -125,7 +124,7 @@ AND material.material_id = 'M0005'
 SET stock = stock+quantity;
 ```
 설명 : 공급을 받으면 받은 만큼 재고가 늘어나야 한다. 위 SQL의 상황에선 S0012 id를 가진 공급자(Supplier)로부터 M0005 id를 가진 원재료(Material)를 공급받는 상황을 가정한다. 재고를 갱신하려면 우선 조인을 통해 어떤 공급자(supplier_id)가 어떤 원재료(material_id)를 공급했는지 정보를 파악해야 한다. 따라서 조인을 통해 이를 추적하여 material_supplied로 연결해주고, material_supplied의 quantity만큼 material의 stock에 더해주면 원재료의 재고 갱신이 완료된다.
-<br/>
+<br/><br/>
 3. 가장 가장 많이 판매된 블렌딩 티를 확인하기 위하여 아래와 같은 쿼리를 사용한다. <br/>
 ```sql
 SELECT tea_id, tea_name, sell 
@@ -133,8 +132,7 @@ FROM (SELECT tea_id, SUM(quantity) as sell from blendingtea_ordered GROUP BY tea
 WHERE sell = (SELECT MAX(sell) FROM (SELECT tea_id,SUM(quantity) as sell from blendingtea_ordered GROUP BY tea_id));
 ```
 설명: 가장 잘 팔리는 차와 그 차의 판매량을 알아보기 위해 현재 ordertable에 올라온 주문에서 판매된 차별로 판매된 양의 합을 구하고 이 중 판매량이 가장 큰 차의 ID와 이름, 판매량을 불러온다.
-<br/>
-
+<br/><br/>
 4. 각각의 블랜더가 만든 블랜딩 티의 개수/판매량의 합을 보여주는 뷰 <br/>
 ```sql
 CREATE OR REPLACE VIEW made
@@ -145,10 +143,8 @@ FROM blendingtea, blendingtea_ordered
 WHERE blendingtea.tea_id = blendingtea_ordered.tea_id GROUP BY blender_id;
 ```
 설명: 회사에 속해있는 블랜더가 몇개의 블랜딩 티를 만들었는지를 보여주고 각각의 만들어진 티들의 판매량의 합을 나타내는 뷰이다, OR REPLACE 를 명시하였기 때문에 판매량이나 새로운 블랜딩 티가 개발이 되면 해당 쿼리를 실행시키면 업데이트도 가능하다.
-<br/>
-
-5. 고객이 자신의 구매 내역을 확인하고 싶을 경우 고객에게 아래의 VIEW를 제공한다. View에는 자신이 언제 어떤 주문을 했고, 그 주문에서 어떤 차를, 몇개를 시켰고 총 얼마를 결제했는지(블렌딩 티의 개당 가격 * 주문 수량) 확인할 수 있다. - 아래의 상황은 C0001 고객이 자신의 구매 내역을 조회하는 상황이다.
-<br/>
+<br/><br/>
+5. 고객이 자신의 구매 내역을 확인하고 싶을 경우 고객에게 아래의 VIEW를 제공한다. View에는 자신이 언제 어떤 주문을 했고, 그 주문에서 어떤 차를, 몇개를 시켰고 총 얼마를 결제했는지(블렌딩 티의 개당 가격 * 주문 수량) 확인할 수 있다. - 아래의 상황은 C0001 고객이 자신의 구매 내역을 조회하는 상황이다.<br/>
 ```sql
 CREATE OR REPLACE VIEW purchase_history
 AS SELECT ordertable.order_id, order_date, blendingtea.tea_name, blendingtea_ordered.quantity, blendingtea_ordered.quantity * blendingtea.price as purchase_price
@@ -158,7 +154,7 @@ AND blendingtea_ordered.tea_id = blendingtea.tea_id
 AND ordertable.customer_id = 'C0001';
 ```
 설명: OR REPLACE VIEW로 만들어서 기존에 같은 이름의 VIEW가 있더라도 새롭게 그때 그때 뷰를 생성할 수 있게 하였다(그냥 CREATE VIEW를 사용하면 기존에 purchase_history 뷰를 생성했을 경우 새롭게 뷰를 갱신하지 못한다.) 해당 주문에 대해(ordertable.order_id) 어떤 블렌딩 티가 주문되어졌는지 확인하기 위해 blendingtea_ordered 테이블과 조인해 주었고, 해당 블렌딩 티의 개당 가격을 알아야 하기에 가격 정보가 저장되어진 blendingtea 테이블과 조인해 주었다.
-<br/>
+<br/><br/>
 
 6. 구독자(Subscriber)의 경우 아래의 SQL과 같이 정기적으로 ordertable과 blendingtea_ordered 에 새로운 주문이 rate_plan에 명시된 개수와 고객이 선택한 차로 insert 시켜준다. <br/>
 ```sql
@@ -169,7 +165,7 @@ INSERT INTO blendingtea_ordered (tea_id,order_id,quantity) select 'T0009', order
 설명: rate_plan 테이블의 provied amount는 해당 구독제를 결제했을 때 달마다 몇개의 차가 고객에게 배송되는지의 양이다.
 만일 구독제로 해당 기업의 서비스를 이용하는 C0012 고객이 차 ID가 T0009인 상품을 정기적으로 받기로 선택했다고 가정하면 고객이 구독한 구독제에서 제공되는 provided amount 만큼 해당 차가 한달에 한번씩 고객에게 배송될 것이다. 이는 provided amount 만큼의 차 주문이 ordertable에 들어가는 것과 같기에 위와 같은 SQL이 필요한 것이다.
 subscriber가 정기 구독이 매달 업데이트가 될 때 마다 order table과 blendingtea_ordered 테이블에 새로운 주문을 넣어서 기록에 남긴다. 위 쿼리는 C0012 고객이 업데이트가 되었을 때 마지막 주문인 O0018뒤에 O0019을 추가 하면서 blendingtea_ordered 에도 고객이 지정한 T0009가 해당 rate_plan에 적혀있는 provided amount만큼 주문기록이 자동으로 추가된다. 즉, 이 고객의 경우 매달 30개의 차가 제공되는 Basic Plan을 채택한 고객이기에 30개의 수량만큼 order가 발주되는 것이다.
-<br/>
+<br/><br/>
 
 7. 블렌더의 연령대(평균)별 받는 로열티를 오름차순으로 나타낸다. <br/>
 ```sql
