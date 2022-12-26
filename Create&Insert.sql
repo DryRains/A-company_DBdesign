@@ -149,7 +149,7 @@ CONSTRAINT blendingtea_ordered_fk2 FOREIGN KEY (order_id) REFERENCES ordertable(
 
 CREATE INDEX blendingtea_price_index on blendingtea(price);
 CREATE INDEX ordered_quantity_index on blendingtea_ordered(quantity);
-/*Useful SQL을 사용할 때 두 애트리뷰트가 활용이 자주 된다(총 주문금액 조회, 재고 갱신 작업 등에 활용). 따 라서 7팀은 조인에 자주 사용되는 두 애트리뷰트에 인덱스를 걸어주기로 결정하였다.*/
+/*Useful SQL을 사용할 때 두 애트리뷰트가 활용이 자주 된다(총 주문금액 조회, 재고 갱신 작업 등에 활용). 따라서 7팀은 조인에 자주 사용되는 두 애트리뷰트에 인덱스를 걸어주기로 결정하였다.*/
 
 
 INSERT INTO department VALUES ('D0001','경영기획','02 340 9072','924 5013 8072','5-1');
