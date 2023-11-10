@@ -1,6 +1,6 @@
 ### 1. 프로젝트 설명
 The project was carried out using the concepts learned in the major class "DB Design and Implementation", and the final goal of the project is to interview real companies that need database systems, design databases based on their requirements, and derive several SQLs using the database. The number of participants in the project is 4, and I managed the overall progress as a team leader and was in charge of interviews with corporate officials & ERD design & SQL.
-전공 수업 'DB 설계 및 구현'에서 배웠던 개념들을 활용하여 진행한 프로젝트로, 데이터베이스 시스템을 필요로 하는 실제 기업을 인터뷰하고 그들의 요구사항을 기반으로 데이터베이스를 
+<br>전공 수업 'DB 설계 및 구현'에서 배웠던 개념들을 활용하여 진행한 프로젝트로, 데이터베이스 시스템을 필요로 하는 실제 기업을 인터뷰하고 그들의 요구사항을 기반으로 데이터베이스를 
 설계하고, 해당 데이터베이스를 활용한 몇가지의 SQL을 도출하는 것이 프로젝트 최종 목표이다. 프로젝트 참여 인원은 4명이며, 본인은 팀장으로 전체적인 진행 상황을 관리하고, 기업 관계자 인터뷰 & ERD 설계 & SQL 을 담당했다.
 <br></br>
 ### 2. 선정 기업
